@@ -166,11 +166,11 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
      for(Integer x: L) {System.out.println(x*x);}
      count(11);
      cut();
-     clone(L);
-     weakclone(L);
-     reverse(L);
-     min(L);
-     sort(L);
+     clone();
+     weakclone();
+     reverse();
+     min();
+     sort();
      }//main
      **************/
     
