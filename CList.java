@@ -164,6 +164,13 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
      System.out.println("after deleteAt(2): " + M);
      // testing Iterable implementation:
      for(Integer x: L) {System.out.println(x*x);}
+     count();
+     cut();
+     clone();
+     weakclone();
+     reverse();
+     min();
+     sort();
      }//main
      **************/
     
