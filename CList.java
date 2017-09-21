@@ -54,7 +54,7 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
 					}
 				}
 			}
-			if (i.equals(firstnum)
+			if (i.equals(firstnum))
 			{
 					first.next = i.next;
 			}
