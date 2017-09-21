@@ -20,7 +20,7 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
     public int count(T x) // returns the number of times x is found as an item in the list
     {
         int count = 0;
-        
+        int number = 0;
         if (x==null) return 0;
     
         node current = first;
@@ -39,8 +39,8 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
     public void cut() // removes specified number of elements from the front of a list
     {
         node current = first;
-        firstnum = first.item;
-        tempsize = this.size;
+        node firstnum = first.item;
+        node tempsize = this.size;
         for (node i = last; i != null;)
         {
 			if (i != firstnum)
@@ -63,11 +63,11 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
     
 
     
-    public LinkedList<T> clone() // return a full clone of the list being invoked on.
+    public CList<T> clone() // return a full clone of the list being invoked on.
     {
-        LinkedList<T> CloneList = new LinkedList<T>();
-        current = current.first;
-        cloneSize = 0;
+        CList<T> CloneList = new CList<T>();
+		node current = first.item;
+		cloneSize = 0;
         
         for (int i = 0; i < size; i++)
         {
@@ -79,7 +79,7 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
         
     }
 
-    public LinkedList<T> weakclone() //list with the same size without duplicating cells
+    public CList<T> weakclone() //list with the same size without duplicating cells
     {
         if (L == null)
         {
@@ -97,9 +97,8 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
     public CList<T> reverse() //Function to reverse list
     {
         CList<T> ReversedList = new list<T>();
-        temp = L.size;
-		firstnum = first.item;
-        tempsize = this.size;
+		node firstnum = first.item;
+        node tempsize = this.size;
         for (node i = last; i != null;)
         {
 			if (i != firstnum)
@@ -115,7 +114,7 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
 				}
 			}
 		}
-	return ReversedList;
+		return ReversedList;
     }
     
     
