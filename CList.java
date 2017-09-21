@@ -41,14 +41,26 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
         node current = first;
         firstnum = first.item;
         tempsize = this.size;
-        for (current = current.last; tempsize <= this.size; current.prev)
+        for (node i = last; i != null;)
         {
-            if (current.equals(firstnum))
-            {
-                first.next = current.next;
-            }
-        }
-    }
+			if (i != firstnum)
+			{
+				for (int t = 0; t < tempsize; t++)
+				{
+					while (current.next != i)
+					{
+					current = current.next;
+					i = current;
+					}
+				}
+			}
+			if (i.equals(firstnum))
+			{
+					first.next = i.next;
+			}
+			}
+       }
+    
 
     
     public LinkedList<T> clone() // return a full clone of the list being invoked on.
