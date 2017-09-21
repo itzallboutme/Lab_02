@@ -115,7 +115,7 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
 				}
 			}
 		}
-	return ReversedList;
+		return ReversedList;
     }
     
     
