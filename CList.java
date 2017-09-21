@@ -50,8 +50,8 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
 					while (current.next != i)
 					{
 					current = current.next;
-					i = current;
 					}
+					i = current;
 				}
 			}
 			if (i.equals(firstnum))
@@ -98,12 +98,24 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
     {
         CList<T> ReversedList = new list<T>();
         temp = L.size;
-        
-        for (current = current.last; temp <= L.size(); current.prev;)
+		firstnum = first.item;
+        tempsize = this.size;
+        for (node i = last; i != null;)
         {
-            MList.add(current);
-        }
-        return MList;
+			if (i != firstnum)
+			{
+				for (int t = 0; t < tempsize; t++)
+				{
+					while (current.next != i)
+					{
+					current = current.next;
+					}
+					ReversedList.add(i);
+					i = current;					
+				}
+			}
+		}
+	return ReversedList;
     }
     
     
