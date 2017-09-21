@@ -43,7 +43,7 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
         tempsize = this.size;
         for (current = current.last; tempsize <= this.size; current.prev)
         {
-            if current.equals(firstnum)
+            if (current.equals(firstnum))
             {
                 first.next = current.next;
             }
@@ -84,7 +84,7 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
     
     public CList<T> reverse() //Function to reverse list
     {
-        CList<T> ReversedList = new.list<T>();
+        CList<T> ReversedList = new list<T>();
         temp = L.size;
         
         for (current = current.last; temp <= L.size(); current.prev;)
@@ -119,6 +119,29 @@ public class CList<T extends Comparable<T>> extends LinkedList<T>
             S.orderInsert(x);
             return S;
         
-    }		
-
-}
+    }
+    
+    /************ uncomment to test *************
+     public static void main(String[] av)
+     {
+     LinkedList<Integer> L = new LinkedList<Integer>();
+     L.add(5);
+     L.add(7);
+     L.add(11);
+     L.add(13);
+     L.push(3);
+     L.push(2);
+     L.push(1);
+     L.pop();
+     System.out.println(L);
+     LinkedList<Integer> M = L.split(2);
+     System.out.println(L);
+     System.out.println(M);
+     M.deleteAt(2);
+     System.out.println("after deleteAt(2): " + M);
+     // testing Iterable implementation:
+     for(Integer x: L) {System.out.println(x*x);}
+     }//main
+     **************/
+    
+}// LinkedList public class
