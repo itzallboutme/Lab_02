@@ -23,38 +23,62 @@ public void digout(int y, int x)   // modify this function
      // But the following won't work (but will compile)
 
      // sample code that tries to digout one space to the left:
-     if (x-1>=0) digout(y,x-1);
      // sample code that tries to digout TWO space to the right IF it's not
      // already dug out:
-     if (x+2<mw && M[y][x+2]==0) // always check for maze boundaries
+	 
+  /*  if (x+2<mw && M[y][x+2]==0) // always check for maze boundaries
 	 {
 	     M[y][x+1] = 1;
 	     drawblock(y,x+1);
 	     digout(y,x+2);
 	 }
 	 
-	 if (x + 2 <mw && M[y][x+2] == 0)
-	 {
-		 M[y][x+1] = 1;
-		 drawblock(y, x+1);
-		 digout(y, x+2);
-	 }
+	*/
 	 
-	 int[] DX = {0,1,0,-1};     // Gives the ability for direction This was given as an example doesn't work completely
+	 int[] DX = {0,1,0,-1};     // Gives the ability for direction 
 	 int[] DY = {-1,0,1,0};
 	 
 		int[] P = {0, 1, 2, 3};
 		for (int i = 0; i < P.length; i++)
 		{
-			int r = i+(int)(Math.random()*P.length - 1);
-			int temp = P[i];
-			P[i] = dir[r];
+			int r = i+(int)(Math.random()*P.length - 1); // r is between i and P.length -1
+			int temp = P[i];	// swap each element with some random element 
+			P[i] = P[r];
 			P[r] = temp;
-		}
+			if (P[i] == 0 && y - 2 < mh && M[y-1][x] == 0)
+				{
+					M[y-1][x] = 1;
+					drawblock(y - 1, x);
+					digout(y - 1, x);
+				}
+				if (P[i] == 1 && x - 2 < mw && M[y][x-1] == 0)
+				{
+					M[y][x-1] = 1;
+					drawblock(y, x - 1);
+					digout(y, x-1);
+				}
+				if (P[i] == 2 && y + 2 < mh &&M[y+1][x] == 0)
+				{
+					M[y+2][x] = 1;
+					drawblock(y + 1, x);
+					digout(y + 1, x);
+				}
+		
+				if (P[i] == 3 && x + 2 < mw && M[y][x+1] == 0)
+				{
+					M[y][x+1] = 1;
+					drawblock(y, x + 1);
+					digout(y, x+1);
+				}
 	 
-		 for(int dir = 0; dir < 4; dir++)
-			int dx = DX[dir];s dy = DY[dir];
+		}	 
+	
+		
+		/* for(int dir = 0; dir < 4; dir++)
+		 {
+			int dx = DX[dir]; int dy = DY[dir];
 			int nx = x + 2*dx, ny = y + 2*dy;
+		 }
 		 
 		 if (nx >= 0 && nx < mw && ny >= 0 && ny = mh && M[ny][nx] == 0)
 		 {
@@ -62,6 +86,8 @@ public void digout(int y, int x)   // modify this function
 			 drawblock(y + dy, x + dx);
 			 digout(ny, nx);
 		 }
+			 */
+		 
  }//digout
 
 }//studentcode subclass
