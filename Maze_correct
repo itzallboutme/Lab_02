@@ -1,0 +1,71 @@
+class studentcode extends mazedfs
+{
+    public studentcode(int bh0, int mh0, int mw0) // don't change constructor
+    { 
+	super(bh0,mh0,mw0); 
+    } 
+
+public void digout(int y, int x)   // modify this function
+ {
+     // The following is a skeleton program that demonstrates the mechanics
+     // needed for the completion of the program.
+
+     // We always dig out two spaces at a time: we look two spaces ahead
+     // in the direction we're trying to dig out, and if that space has
+     // not already been dug out, we dig out that space as well as the
+     // intermediate space.  This makes sure that there's always a wall
+     // separating adjacent corridors.
+	
+     M[y][x] = 1;  // digout maze at coordinate y,x
+     drawblock(y,x);  // change graphical display to reflect space dug out
+     delay(40); // slows animation
+
+     // But the following won't work (but will compile)
+
+     // sample code that tries to digout one space to the left:
+     // sample code that tries to digout TWO space to the right IF it's not
+     // already dug out:
+	 
+    if (x+2<mw && M[y][x+2]==0) // always check for maze boundaries
+	 {
+	     M[y][x+1] = 1;
+	     drawblock(y,x+1);
+	     digout(y,x+2);
+	 }
+	 
+	int[] DX = {0,1,0,-1};     // Gives the ability for direction 
+	int[] DY = {-1,0,1,0};
+	int nx;
+	int ny;
+	int dx;
+	int dy;
+
+	int[] P = {0,1,2,3}; // initial identity permutation
+	for (int i=0;i < P.length;i++)
+	{ 
+		int r = i+(int)(Math.random()*P.length-i); // r is between i and P.length-1
+		int temp = P[i];   						   // swap each element with some random element.
+		P[i] = P[r];
+		P[r] = temp;
+	}
+	
+		
+	for(int dir = 0; dir < 4; dir++)
+	{
+		{ 
+			dir = (int)(Math.random()*4);
+			dx = DX[dir]; dy = DY[dir];
+			nx = (x + 2*dx); ny = (y + 2*dy);
+		}
+		 
+		if (nx >= 0 && nx < mw && ny >= 0 && ny < mh && M[ny][nx] == 0)
+		{
+			M[y + dy][x + dx] = 1;
+			drawblock(y + dy, x + dx);
+			digout(ny, nx);
+		}
+	}
+		 
+ }//digout
+
+}//studentcode subclass
