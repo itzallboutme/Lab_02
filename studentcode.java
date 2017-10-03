@@ -43,41 +43,162 @@ public void digout(int y, int x)   // modify this function
              digout(ny,nx);
          }
      }
- }
+ } // digout
     
     public void solve()
     {
         int y = 1, x = 1;
+        byte[] Vals = new byte[4];
+       
         drawdot(y, x);
-        
+        delay(40);
         
         while ( y!=mh-2 || x!=mw-2)
         {
-            //int n = M[y-1][x];
-            y++;
-            x++;
-            drawdot(y,x);
-            drawblock(y-1,x-1);
-            delay(40);
+            drawdot(y, x);
+            
+            drawblock(y, x);
+            
+            
+            if (y-1 >= 0 && M[y-1][x] != 0) Vals[0] = M[y-1][x];
+            else Vals[0] = 127;
+            if (x-1 >= 0 && M[y][x-1] != 0) Vals[1] = M[y][x-1];
+            else Vals[1] = 127;
+            if (y+1 <= 41 && M[y+1][x] != 0) Vals[2] = M[y+1][x];
+            else Vals[2] = 127;
+            if (x+1 <= 51 && M[y][x+1] != 0) Vals[3] = M[y][x+1];
+            else Vals[3] = 127;
+            
+            int direction = 0;
+            for (int four = 0; four < 4; four++)
+            {
+                if (Vals[four] < Vals[direction])
+                    direction = four;
+            }
+            if (direction == 0 && y-1 != mh-2)
+            {
+                // drawblock(y, x);
+                y -= 1;
+                // drawdot(y, x);
+                M[y][x] += 1;
+            }
+            
+            if (direction == 1 && x-1 != mw-2)
+            {
+                // drawblock(y, x);
+                x -= 1;
+                // drawdot(y, x);
+                M[y][x] += 1;
+            }
+            
+            if (direction == 2)
+            {
+                // drawblock(y, x);
+                y += 1;
+                // drawdot(y, x);
+                M[y][x] += 1;
+            }
+            
+            if (direction == 3)
+            {
+                // drawblock(y, x);
+                x += 1;
+                // drawdot(y, x);
+                M[y][x] += 1;
+                
+            }
             
         }
         
+   
+        
+        
+    } // solve
+    
+    class stackcell
+    {
+        int x;
+        int y;
+        stackcell tail;
+        public stackcell(int a, int b, stackcell t) {y=a; x=b; tail=t;}
+    } // stack class
+
+    
+    public void trace()
+    {
+        stackcell PathBackStack = new stackcell();
        
-        /*while (y != mh - 2 || x != mw - 2)
+        while(x != 1 && y != 1 )
         {
-            if (y-1 >0 && M[y-1][x] != 0)
+            int x = PathBackStack.x;
+            int y = PathBackStack.y;
+            
+            
+            byte valueOfFieldNorthOfXY = M[x][y-1];
+            byte valueOfFieldWesthOfXY = M[x-1][y];
+            byte valueOfFieldEastOfXY = M[x+1][y];
+            byte valueOfFieldSouthOfXY = M[x][y+1];
+            
+            if (yourstack.tail.x == x && yourstack.tail.y == y-1)
             {
-                n = M[y-1][x];
+                
+                valueOfFieldNorthOfXY = 100;
             }
-            else
+            
+            
+            if (yourstack.tail.x == x-1 && yourstack.tail.y == y)
             {
-                n = 127;
+                
+                
+                int direction = NORTH;
+                byte maxValue = 100;
+                if (valueOfFieldNorthOfXY < maxValue)
+            {
+                    maxValue = valueOfFieldNorthOfXY;
+                    direction = NORTH;
+                }
+                if (valueOfFieldWestOfXY < maxValue)
+                {
+                    maxValue = valueOfFieldWestOfXY;
+                    direction = WEST;
+                }
+                
+                if (valueOfFieldEastOfXY < maxValue)
+                {
+                    maxValue = valueOfFieldEastOfXY;
+                    direction = EAST;
+                }
+                if (valueOfFieldSouthOfXY < maxValue)
+                {
+                    maxValue = valueOfFieldSouthOfXY;
+                    direction = SOUTH;
+                }
+                    
+                    
+                    
+                    int nx = x;
+                    int ny = y;
+                    if (direction == NORTH)
+                    {
+                        ny = ny - 1;
+                    }
+                    if (direction == WEST)
+                    {
+                        nx = nx - 1;
+                    }
+                    if (direction == EAST)
+                    {
+                        nx = nx + 1;
+                    }
+                    if (direction == SOUTH)
+                    {
+                        ny = ny - 1;
+                    }
+                PathBackStack = new stackcell(nx, ny, PathBackStack);
+                drawdot(PathBackStack.y,PathBackStack.x);
                 
             }
-            drawdot(y,x);
-        } */
-        
-        
+        }
     }
 
 }//studentcode subclass
