@@ -139,68 +139,73 @@ public void digout(int y, int x)   // modify this function
             byte valueOfFieldEastOfXY = M[x+1][y];
             byte valueOfFieldSouthOfXY = M[x][y+1];
             
-            if (yourstack.tail.x == x && yourstack.tail.y == y-1)
+            if (stackcell.tail.x == x && stackcell.tail.y == y-1)
             {
                 
                 valueOfFieldNorthOfXY = 100;
             }
-            
-            
-            if (yourstack.tail.x == x-1 && yourstack.tail.y == y)
+            if (stackcell.tail.x == x-1 && stackcell.tail.y == y)
             {
-                
-                
-                int direction = NORTH;
-                byte maxValue = 100;
-                if (valueOfFieldNorthOfXY < maxValue)
-            {
-                    maxValue = valueOfFieldNorthOfXY;
-                    direction = NORTH;
-                }
-                if (valueOfFieldWestOfXY < maxValue)
-                {
-                    maxValue = valueOfFieldWestOfXY;
-                    direction = WEST;
-                }
-                
-                if (valueOfFieldEastOfXY < maxValue)
-                {
-                    maxValue = valueOfFieldEastOfXY;
-                    direction = EAST;
-                }
-                if (valueOfFieldSouthOfXY < maxValue)
-                {
-                    maxValue = valueOfFieldSouthOfXY;
-                    direction = SOUTH;
-                }
-                    
-                    
-                    
-                    int nx = x;
-                    int ny = y;
-                    if (direction == NORTH)
-                    {
-                        ny = ny - 1;
-                    }
-                    if (direction == WEST)
-                    {
-                        nx = nx - 1;
-                    }
-                    if (direction == EAST)
-                    {
-                        nx = nx + 1;
-                    }
-                    if (direction == SOUTH)
-                    {
-                        ny = ny - 1;
-                    }
-                PathBackStack = new stackcell(nx, ny, PathBackStack);
-                drawdot(PathBackStack.y,PathBackStack.x);
-                
+                valueOfFieldWestOfXY = 100;
             }
+            
+            if (stackcell.tail.x == x+1 && stackcell.tail.y == y)
+            {
+                valueOfFieldEastOfXY = 100;
+            }
+            if (stackcell.tail.x == x1 && stackcell.tail.y == y+1)
+            {
+                valueOfFieldSouthOfXY = 100;
+            }
+            
+            int direction = NORTH;
+            byte maxValue = 100;
+            if (valueOfFieldNorthOfXY < maxValue)
+            {
+                maxValue = valueOfFieldNorthOfXY;
+                direction = NORTH;
+            }
+            if (valueOfFieldWestOfXY < maxValue)
+            {
+                maxValue = valueOfFieldWestOfXY;
+                direction = WEST;
+            }
+                
+            if (valueOfFieldEastOfXY < maxValue)
+            {
+                maxValue = valueOfFieldEastOfXY;
+                direction = EAST;
+            }
+            if (valueOfFieldSouthOfXY < maxValue)
+            {
+                maxValue = valueOfFieldSouthOfXY;
+                direction = SOUTH;
+            }
+            
+            int nx = x;
+            int ny = y;
+            if (direction == NORTH)
+            {
+                ny = ny - 1;
+            }
+            if (direction == WEST)
+            {
+            nx = nx - 1;
+            }
+            if (direction == EAST)
+            {
+                nx = nx + 1;
+            }
+            if (direction == SOUTH)
+            {
+                ny = ny - 1;
+            }
+            PathBackStack = new stackcell(nx, ny, PathBackStack);
+            drawdot(PathBackStack.y,PathBackStack.x);
+            
         }
     }
-
+    
 }//studentcode subclass
 
 
