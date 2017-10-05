@@ -18,24 +18,9 @@ class studentcode extends mazedfs
 	{
 		Coord c = (Coord) x;
 	*/
-class stackcell 
-{
-    int x;
-    int y;
-    stackcell tail;
-    public stackcell(int a, int b, stackcell t) {y=a; x=b; tail=t;}
-	
-	/* public void cut()
-	{
-		int first = (a);
-		for (int loop = 0; loop < stacksize; loop++)
-		{
-			// if a == j
-		}
-	} */
-} // stack class
 
-public void digout(int y, int x)   // modify this function
+
+	public void digout(int y, int x)   // modify this function
 {
      // solution
 
@@ -70,19 +55,50 @@ public void digout(int y, int x)   // modify this function
 	 }// for each dir
  }//digout
 
+
+class stackcell 
+{
+    int x;
+    int y;
+	int stacksize;
+    stackcell tail;
+    public stackcell(int a, int b, stackcell t) {y=a; x=b; tail=t;}
+	
+
+	/*public void cut()
+	{
+		int firstcoord = y;
+		int secondcoord = x;
+		tempsize = stacksize;
+		for (int loop = 0; loop < tempstack; loop++)
+		{
+			stackcell = stackcell.tail;
+			if (firstcoord = y)
+			{
+				if (secondcoord = x)
+				{
+					stackcell = stackcell.tail;
+					stacksize--;
+				}
+			}
+		}
+	} */
+ 
+
+ 
  public void solve()
  {
 	
 	int x=1, y=1;
 	byte[] Vals = new byte[4];
-	stackcell yourStack = new stackcell(y,x, null);
+	// stackcell(y, x, null) == -1;
 
 	drawdot(y, x);
 	delay(40);
 	while( y != mh-2 || x != mw-2)
 	{
 		drawdot(y, x);
-		int mazesize = 0;
+		int stacksize = 0;
 	 
 		// drawblock(y, x);
 		
@@ -135,17 +151,25 @@ public void digout(int y, int x)   // modify this function
 			M[y][x] += 1;		
 		}
 		
-		yourStack = new stackcell(y,x, yourStack);
-
-
+		// yourStack = new stackcell(y,x, yourStack);
+		stacksize += 1;
 		
+		// stackcell (y, x, yourStack) -= 1;
+
 	} 
  }
  
-     public void trace()
+/*	public void trace()
     {
+		for (int i = 0; i < stacksize; i++)
+		{
+			yourStack = yourStack.tail;
+			drawdot(y, x);
+			drawblock(y, x);
+		}
+				
 		
-    
+
+	} */
+}//stack class
 }//studentcode subclass
-
-
