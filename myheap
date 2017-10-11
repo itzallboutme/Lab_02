@@ -1,0 +1,49 @@
+public class myheap<T extends Comparable<T>> extends Heap<T>
+{ 
+    // constructors of the subclass should be written this way:
+    public myheap(int max) { super(max); }
+    public myheap(T[] A, int size) {super(A, size);}  
+    public void drawheap() // use only with heapdisplay.java program
+    { 
+      heapdisplay W = new heapdisplay(1024,768);
+      W.drawtree(H,size);
+    }
+	
+	public static <S extends Comparable<S>> void heapsort(S[] A) // sorts array A
+	// this funciton is independently polymorphic (parameterized by <S>)
+	{ // outline:
+	// 1.create a Heap<S> HA with capacity same as A.length
+	// 2.insert every value in A into HA
+	// 3.use a backwards loop to fill array with HA.deleteTop() values
+	int ASize = A.length;
+	Heap<S> HA = new Heap<S>(ASize);
+	for (int g = 0; g <= ASize-1; g++)
+		{
+			HA.insert(A[g]);
+		}
+	
+	for (int i = ASize-1; i >= 0; i--)
+		{
+			A[i] = HA.deleteTop();
+		}
+	}
+	
+	public makeheap()
+	{
+		Heap(T[] A, int size)
+		
+	
+    // ... other methods (see below)
+	
+    // create a main to test
+	
+	public static void main(String[] av)
+	{
+	int n = 100000; // sort 100K numbers
+	Integer[] A = new Integer[n];
+	for(int i=0;i<A.length;i++)
+	    A[i] = (int)(Math.random()*100*n);
+	heapsort(A); // assume called from within main in myheap
+	for(int i=0;i<A.length-1;i++)
+	    if (A[i]>A[i+1]) System.out.println("OOPS"); // shouldn't print this
+	}
